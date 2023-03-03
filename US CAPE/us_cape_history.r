@@ -37,7 +37,8 @@ for (i in 1:length(quant_values)){
   cape_quantiles[[i]] <- cape %>% 
     mutate(q = curr_quant_name,
            rolling = roll::roll_quantile(CAPE,width = 120*2, p = quant_values[i]),
-           expanded = expand_quantile(CAPE, p = quant_values[i],skip.first = 1))
+           expanded = expand_quantile(CAPE, p = quant_values[i],skip.first = 1),
+           quantile_difference = rolling - expanded)
 
 }
   
@@ -48,10 +49,33 @@ cq <- merge(cq,full_history_quantiles_df, by = 'q')
 cq <- cq %>% pivot_longer(!c(date,CAPE,q))
 
 
-
-ggplot(cq %>% filter (name != 'full_history'),
-       aes(x= date, y = value, color = name)) + 
+cq %>% filter(name != 'quantile_difference') %>%
+ggplot(., aes(x= date, y = value, color = name)) + 
   geom_line() + 
   facet_wrap(~q, scales = 'free_y') + 
   theme_minimal( ) +
   ggtitle('20 year rolling quantiles of S&P 500 CAPE Ratio')
+
+cq %>% filter(name == 'quantile_difference') %>%
+  ggplot(., aes(x= date, y = value, color = name)) + 
+  geom_bar(stat = 'identity') + 
+  facet_wrap(~q) + 
+  theme_minimal( ) +
+  ggtitle('20 year rolling quantiles of S&P 500 CAPE Ratio')
+
+
+cape_bt <- list()
+cape_bt_entries <- c(8.6)
+cape_bt_exits <- c(20)
+
+for(i in 1:length(cape_bt_entries)){
+  cape_bt[[i]] <- cape %>% na.omit() %>% mutate(entry = cape_bt_entries[i],
+                                  exit = cape_bt_exits[i],
+                                  position = cape_backtest(CAPE,cape_bt_entries[i],cape_bt_exits[i]))
+                                  
+}
+
+cbt <- bind_rows(cape_bt) %>% mutate(bt_name = paste("n",entry,'x',exit))
+
+ggplot(cbt, aes(x=date,y=position,fill = as.factor(bt_name))) + 
+  geom_bar(position="stack", stat="identity")+ theme_minimal()
