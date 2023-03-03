@@ -78,5 +78,5 @@ for(i in 1:length(cape_bt_entries)){
 cbt <- bind_rows(cape_bt) %>% mutate(bt_name = paste("n",entry,'x',exit))
 
 ggplot(cbt, aes(x=date,y=position,fill = as.factor(bt_name))) + 
-  geom_bar(position="stack", stat="identity")+ theme_minimal() + facet_wrap(~bt_name)
+  geom_bar(position="stack", stat="identity")+ theme_minimal() + facet_wrap(~bt_name) + theme(legend.position = 'none')
 
