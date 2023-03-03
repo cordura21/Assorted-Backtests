@@ -65,7 +65,7 @@ cq %>% filter(name == 'quantile_difference') %>%
 
 
 cape_bt <- list()
-cape_bt_entries <- seq(8,12,by=0.5)
+cape_bt_entries <- seq(8,16,by=0.5)
 cape_bt_exits <- c(rep(20,length(cape_bt_entries)))
 
 for(i in 1:length(cape_bt_entries)){
@@ -75,8 +75,14 @@ for(i in 1:length(cape_bt_entries)){
                                   
 }
 
-cbt <- bind_rows(cape_bt) %>% mutate(bt_name = paste("n",entry,'x',exit))
+library(stringr)
 
-ggplot(cbt, aes(x=date,y=position,fill = as.factor(bt_name))) + 
-  geom_bar(position="stack", stat="identity")+ theme_minimal() + facet_wrap(~bt_name) + theme(legend.position = 'none')
+cbt <- bind_rows(cape_bt) %>% 
+  mutate(bt_name = paste("n:",entry,'x',exit)) %>%
+  mutate(decade = year(date) - year(date) %% 10 )
+
+ggplot(cbt, aes(x=date,y=position,fill = as.factor(decade))) + 
+  geom_bar(position="stack", stat="identity")+ theme_minimal() + 
+  facet_wrap(~factor(bt_name, levels = unique(cbt$bt_name))) + 
+  theme(legend.position = 'none')
 
