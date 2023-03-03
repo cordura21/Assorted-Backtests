@@ -65,8 +65,8 @@ cq %>% filter(name == 'quantile_difference') %>%
 
 
 cape_bt <- list()
-cape_bt_entries <- c(8.6)
-cape_bt_exits <- c(20)
+cape_bt_entries <- c(8.5,8.6)
+cape_bt_exits <- c(20,20)
 
 for(i in 1:length(cape_bt_entries)){
   cape_bt[[i]] <- cape %>% na.omit() %>% mutate(entry = cape_bt_entries[i],
@@ -79,3 +79,4 @@ cbt <- bind_rows(cape_bt) %>% mutate(bt_name = paste("n",entry,'x',exit))
 
 ggplot(cbt, aes(x=date,y=position,fill = as.factor(bt_name))) + 
   geom_bar(position="stack", stat="identity")+ theme_minimal()
+
