@@ -65,24 +65,34 @@ cq %>% filter(name == 'quantile_difference') %>%
 
 
 cape_bt <- list()
-cape_bt_entries <- seq(8,16,by=0.5)
+cape_bt_entries <- seq(8.0,15,by=0.5)
 cape_bt_exits <- c(rep(20,length(cape_bt_entries)))
 
 for(i in 1:length(cape_bt_entries)){
   cape_bt[[i]] <- cape %>% na.omit() %>% mutate(entry = cape_bt_entries[i],
                                   exit = cape_bt_exits[i],
-                                  position = cape_backtest(CAPE,cape_bt_entries[i],cape_bt_exits[i]))
+                                  position = cape_backtest(CAPE,cape_bt_entries[i],cape_bt_exits[i]),
+                                  yearsIn = cumsum(position) / 12)
                                   
 }
 
 library(stringr)
 
 cbt <- bind_rows(cape_bt) %>% 
-  mutate(bt_name = paste("n:",entry,'x',exit)) %>%
-  mutate(decade = year(date) - year(date) %% 10 )
+  mutate(bt_name = paste("Entry:",entry,'Exit',exit)) %>%
+  mutate(decade = year(date) - year(date) %% 20 )
+
 
 ggplot(cbt, aes(x=date,y=position,fill = as.factor(decade))) + 
   geom_bar(position="stack", stat="identity")+ theme_minimal() + 
   facet_wrap(~factor(bt_name, levels = unique(cbt$bt_name))) + 
-  theme(legend.position = 'none')
+  theme(legend.position = 'none') +
+  ggtitle("When you are in the trade")
+
+ggplot(cbt, aes(x=date,y=yearsIn,fill = as.factor(decade))) + 
+  geom_bar(position="stack", stat="identity")+ theme_minimal() +
+
+  facet_wrap(~factor(bt_name, levels = unique(cbt$bt_name))) + 
+  theme(legend.position = 'none')  +
+  ggtitle("Cummulative years in the trade. Colors are 20 years blocks.")
 
