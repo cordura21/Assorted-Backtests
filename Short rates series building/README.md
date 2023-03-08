@@ -1,7 +1,7 @@
 # Short risk free interest rates building
 This code will attempt to build a time series for the US Government short term interest rate as far as it can go.
 
-The result is a csv file with date, value (annualized nominal interest rate) and source
+The result is a csv file called "us_short_term_rates.csv" with date, value (annualized nominal interest rate) and source
 
 1- Actual treasury data 
 
