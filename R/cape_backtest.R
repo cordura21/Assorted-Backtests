@@ -27,6 +27,18 @@ cape_backtest <- function(x,entry,exit){
 return(backtest$position)
 }
 
+
+cape_backtest(x,entry,exit)
 # Test
-# sample_values <- c(1:4,1:10,9:1,5:4)
-# cape_backtest(sample_values,3,8)
+x <- c(1:4,1:10,9:1,5:4)
+entry <- 3
+exit <- 8
+cape_backtest(x,entry,exit)
+
+x <- c(1:4,1:10,9:1,5:4)
+entry <- rep(3,length(sample_values))
+exit <- rep(8,length(sample_values))
+cross_over(x,entry,exit)
+
+
+
