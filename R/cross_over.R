@@ -59,4 +59,4 @@ cross_over <- function(x,entry,exit){
 }
 
 ## Test
-#cross_over(c(1:4,1:10,9:1,5:4),2,5)
+cross_over(c(1:4,1:10,9:1,5:4),2,5)
