@@ -30,6 +30,7 @@ cross_over <- function(x,entry,exit){
   if(any(is.na(entry))) stop("Input 'entry' has at least one NA value.")
   if(any(is.na(exit))) stop("Input 'exit' has at least one NA value.")
   
+  ## Create data frame 
   backtest <- data.frame(value = x)
   backtest <- backtest %>% 
     mutate(entry_point = entry,
