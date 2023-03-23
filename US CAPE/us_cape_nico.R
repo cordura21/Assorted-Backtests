@@ -22,8 +22,8 @@ cape <- cape %>% select(date,CAPE,`Real TR Price`)
 names(cape) <- c('date','cape','price')
 
 
-entry_value <- 10
-exit_value <- 25
+entry_value <- 16
+exit_value <- 20
 
 ## Estrategia de reversion de cape sin tasa
 cape2 <- cape %>% 
@@ -43,4 +43,4 @@ StdDev.annualized(temp_cape_bt_xts)
 maxDrawdown(temp_cape_bt_xts)
 
 
-
+grid.roundrect(width=.5, height=.2, name="rr", gp = gpar(fill = "white"))
