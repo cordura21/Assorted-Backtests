@@ -35,3 +35,17 @@ Chart 3:
       - Corea del Sur PX TO BOOK RATIO
       - Filipinas PX TO BOOK RATIO
       - Tailandia PX TO BOOK RATIO
+Chart 4:
+  Name: Far East ex Japon Price Index
+  Rebase: TRUE
+  PrimaryAxis:
+    Name: Total Return
+    Variable: 
+      - Far East ex Japon TOT_RETURN_INDEX_GROSS_DVDS
+Chart 5:
+  Name: Far East ex Japon PB
+  Rebase: FALSE
+  PrimaryAxis:
+    Name: Price To Book
+    Variable: 
+      - Far East ex Japon PX TO BOOK RATIO
