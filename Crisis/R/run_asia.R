@@ -44,7 +44,7 @@ for(iCharts in 2:length(selected_case)){
       dygraph(xts_data,main = temp_chart$Name,group = 'A') %>% 
       dyRebase(value = 100) %>%
       dyRangeSelector(dateWindow = dateWindow) %>%  
-      dyOptions(colors = RColorBrewer::brewer.pal(6, "Set1")) %>%
+      dyOptions(colors = RColorBrewer::brewer.pal(6, "Set2")) %>%
       dyHighlight(highlightSeriesOpts = list(strokeWidth = 3)) %>% 
       dySeries(temp_chart$SecondaryAxis$Variable, axis = 'y2') %>% 
       dyAxis("y", label = temp_chart$PrimaryAxis$Name) %>% 
