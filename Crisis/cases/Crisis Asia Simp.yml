@@ -26,6 +26,21 @@ Chart PB:
     Variable: 
       - Far East ex Japon PB Ratio
       - Mundo PB Ratio
+Chart PB Asia: 
+  Name: Price to Book Ratio
+  Rebase: FALSE
+  PrimaryAxis:
+    Name: PB Ratio
+    Variable: 
+      - Far East ex Japon PB Ratio
+Chart Rolling:
+  Name: Rolling 1 & 3 Years
+  Rebase: FALSE
+  PrimaryAxis:
+    Name: Rolling Total Return
+    Variable:
+      - Far East ex Japon Roll TR 3y
+      - Far East ex Japon Roll TR 1y
 Chart 2:
   Name: Rolling 1 Year
   Rebase: FALSE
