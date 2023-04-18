@@ -1,0 +1,37 @@
+Params:
+  ScenarioName: Crisis Asiatica
+  StartDate: 1997-01-01
+  EndDate: 2001-12-31
+Chart 1:
+  Name: Malasia Price Index and PB
+  Rebase: FALSE
+  PrimaryAxis:
+    Name: Price Only
+    Variable: 
+      - Malasia PX LAST
+  SecondaryAxis:
+    Name: PB Ratio
+    Variable: 
+      - Malasia PX TO BOOK RATIO
+Chart 2:
+  Name: Countries Prices Index
+  Rebase: TRUE
+  PrimaryAxis:
+    Name: Price Only
+    Variable:
+      - Malasia PX LAST
+      - Indonesia PX LAST
+      - Corea del Sur PX LAST
+      - Filipinas PX LAST
+      - Tailandia PX LAST
+Chart 3:
+  Name: Countries Price to Book
+  Rebase: FALSE
+  PrimaryAxis:
+    Name: PB Ratio
+    Variables: 
+      - Malasia PX TO BOOK RATIO
+      - Indonesia PX TO BOOK RATIO
+      - Corea del Sur PX TO BOOK RATIO
+      - Filipinas PX TO BOOK RATIO
+      - Tailandia PX TO BOOK RATIO

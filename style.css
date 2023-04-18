@@ -1,0 +1,23 @@
+/* Whole document: */
+body{
+  font-family: Garamond;
+  font-size: 18;
+}
+/* Headers */
+h1{
+  font-size: 18px ;
+   font-decoration: underline
+}
+
+h2{
+  font-size: 16px ;
+  font-style:italic
+}
+
+blockquote {
+    background: #f9f9f9;
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 12px;
+    border-left: 5px solid #eee;
+}
