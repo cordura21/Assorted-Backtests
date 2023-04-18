@@ -3,27 +3,27 @@ Params:
   StartDate: 1997-01-01
   EndDate: 2001-12-31
 Chart 1:
-  Name: Malasia Price Index and PB
+  Name: Far East ex Japon Price Index and PB
   Rebase: FALSE
   PrimaryAxis:
-    Name: Price Only
+    Name: Total Return
     Variable: 
-      - Malasia PX LAST
+      - Far East ex Japon TOT_RETURN_INDEX_GROSS_DVDS
   SecondaryAxis:
     Name: PB Ratio
     Variable: 
-      - Malasia PX TO BOOK RATIO
+      - Far East ex Japon PX TO BOOK RATIO
 Chart 2:
   Name: Countries Prices Index
   Rebase: TRUE
   PrimaryAxis:
-    Name: Price Only
+    Name: Total Return
     Variable:
-      - Malasia PX LAST
-      - Indonesia PX LAST
-      - Corea del Sur PX LAST
-      - Filipinas PX LAST
-      - Tailandia PX LAST
+      - Malasia TOT_RETURN_INDEX_GROSS_DVDS
+      - Indonesia TOT_RETURN_INDEX_GROSS_DVDS
+      - Corea del Sur TOT_RETURN_INDEX_GROSS_DVDS
+      - Filipinas TOT_RETURN_INDEX_GROSS_DVDS
+      - Tailandia TOT_RETURN_INDEX_GROSS_DVDS
 Chart 3:
   Name: Countries Price to Book
   Rebase: FALSE
