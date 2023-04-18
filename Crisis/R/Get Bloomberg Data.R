@@ -26,7 +26,9 @@ for(iLoop in 1:nrow(tickers)){
   
   temp_results <- temp_raw_results %>% mutate(date = as.Date(date),
                                               field = temp_row$field,
-                                              variable = temp_row$variable) %>% as_tibble() %>% na.omit()
+                                              variable = temp_row$variable,
+                                              nice_field = temp_row$field_short_name) %>% 
+    as_tibble() %>% na.omit()
   
   write.csv(temp_results,paste0('Crisis//data//',temp_key,'.csv'),row.names = FALSE)
   print(temp_key)
@@ -47,7 +49,8 @@ results <- csv_data %>% as_tibble() %>%
   mutate(ticker = as.character(ticker),
          field = as.character(field),
          variable = as.character(variable),
-         key = paste(variable,field))
+         nice_field = as.character(nice_field),
+         key = paste(variable,nice_field)) %>% as_tibble()
 
 saveRDS(results,'Crisis//data//Main.RDS')
 
