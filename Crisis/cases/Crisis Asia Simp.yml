@@ -1,0 +1,66 @@
+Params:
+  ScenarioName: Crisis Asiatica
+  StartDate: 1997-01-01
+  EndDate: 2001-12-31
+Chart Price and TR:
+  Name: Price and Total Return Asia
+  Rebase: TRUE
+  PrimaryAxis:
+    Name: Return
+    Variable: 
+      - Far East ex Japon Price TR
+      - Far East ex Japon Price Only
+Charts TR:
+  Name: Far East ex Japon Price Index and World Total Return
+  Rebase: TRUE
+  PrimaryAxis:
+    Name: Total Return
+    Variable: 
+      - Far East ex Japon Price TR
+      - Mundo Price TR
+Chart PB: 
+  Name: Price to Book Ratio
+  Rebase: FALSE
+  PrimaryAxis:
+    Name: PB Ratio
+    Variable: 
+      - Far East ex Japon PB Ratio
+      - Mundo PB Ratio
+Chart 2:
+  Name: Rolling 1 Year
+  Rebase: FALSE
+  PrimaryAxis:
+    Name: Rolling Total Return
+    Variable:
+      - Far East ex Japon Roll TR 1y
+      - Mundo Roll TR 1y
+Chart 3:
+  Name: Rolling 3 Years
+  Rebase: FALSE
+  PrimaryAxis:
+    Name: Rolling Total Return
+    Variable:
+      - Far East ex Japon Roll TR 3y
+      - Mundo Roll TR 3y
+Chart 4:
+  Name: Countries Total Return Index
+  Rebase: TRUE
+  PrimaryAxis:
+    Name: Total Return
+    Variable:
+      - Malasia Price TR
+      - Indonesia Price TR
+      - Corea del Sur Price TR
+      - Filipinas Price TR
+      - Tailandia Price TR
+Chart 5:
+  Name: Countries Prices to Book Ratio
+  Rebase: TRUE
+  PrimaryAxis:
+    Name: Price to Book Ratio
+    Variable:
+      - Malasia PB Ratio
+      - Indonesia PB Ratio
+      - Corea del Sur PB Ratio
+      - Filipinas PB Ratio
+      - Tailandia PB Ratio
