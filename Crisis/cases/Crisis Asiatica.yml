@@ -8,7 +8,7 @@ Chart 1:
   PrimaryAxis:
     Name: Total Return
     Variable: 
-      - Far East ex Japon TOT_RETURN_INDEX_GROSS_DVDS
+      - Far East ex Japon TOT RETURN INDEX GROSS DVDS
   SecondaryAxis:
     Name: PB Ratio
     Variable: 
@@ -19,11 +19,11 @@ Chart 2:
   PrimaryAxis:
     Name: Total Return
     Variable:
-      - Malasia TOT_RETURN_INDEX_GROSS_DVDS
-      - Indonesia TOT_RETURN_INDEX_GROSS_DVDS
-      - Corea del Sur TOT_RETURN_INDEX_GROSS_DVDS
-      - Filipinas TOT_RETURN_INDEX_GROSS_DVDS
-      - Tailandia TOT_RETURN_INDEX_GROSS_DVDS
+      - Malasia TOT RETURN INDEX GROSS DVDS
+      - Indonesia TOT RETURN INDEX GROSS DVDS
+      - Corea del Sur TOT RETURN INDEX GROSS DVDS
+      - Filipinas TOT RETURN INDEX GROSS DVDS
+      - Tailandia TOT RETURN INDEX GROSS DVDS
 Chart 3:
   Name: Countries Price to Book
   Rebase: FALSE
@@ -41,7 +41,8 @@ Chart 4:
   PrimaryAxis:
     Name: Total Return
     Variable: 
-      - Far East ex Japon TOT_RETURN_INDEX_GROSS_DVDS
+      - Far East ex Japon TOT RETURN INDEX GROSS DVDS
+      - Mundo TOT RETURN INDEX GROSS DVDS
 Chart 5:
   Name: Far East ex Japon PB
   Rebase: FALSE
