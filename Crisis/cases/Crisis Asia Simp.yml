@@ -10,6 +10,17 @@ Chart Price and TR:
     Variable: 
       - Far East ex Japon Price TR
       - Far East ex Japon Price Only
+Chart TR and PB:
+  Name: Total Return and PB
+  Rebase: FALSE
+  PrimaryAxis:
+    Name: Return
+    Variable: 
+      - Far East ex Japon Price TR
+  SecondaryAxis: 
+    Name: PB Ratio
+    Variable:
+      - Far East ex Japon PB Ratio
 Charts TR:
   Name: Far East ex Japon Price Index and World Total Return
   Rebase: TRUE
@@ -34,13 +45,17 @@ Chart PB Asia:
     Variable: 
       - Far East ex Japon PB Ratio
 Chart Rolling:
-  Name: Rolling 1 & 3 Years
+  Name: Forward 1 & 3 year total return
   Rebase: FALSE
   PrimaryAxis:
     Name: Rolling Total Return
     Variable:
       - Far East ex Japon Roll TR 3y
       - Far East ex Japon Roll TR 1y
+  SecondaryAxis: 
+    Name: PB Ratio
+    Variable:
+      - Far East ex Japon PB Ratio
 Chart 2:
   Name: Rolling 1 Year
   Rebase: FALSE
