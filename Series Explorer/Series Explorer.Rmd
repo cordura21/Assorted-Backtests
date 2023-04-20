@@ -13,7 +13,7 @@ library(ggplot2)
 
 library(plotly)
 
-asia <- readRDS('Crisis/data/Main.RDS')
+asia <- readRDS('Main.RDS')
 appOptions <- c('rebase','facets','percentage','stats')
 
 
