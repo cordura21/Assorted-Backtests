@@ -1,0 +1,96 @@
+---
+title: "Series Explorer"
+output: html_document
+runtime: shiny
+---
+
+```{r echo=FALSE}
+library(dplyr)
+library(PerformanceAnalytics)
+library(tbl2xts)
+library(tidyr)
+library(ggplot2)
+
+library(plotly)
+
+asia <- readRDS('Crisis/data/Main.RDS')
+appOptions <- c('rebase','facets','percentage','stats')
+
+
+```
+
+```{r echo=FALSE}
+selectInput("selection",label = "Select Series",choices = unique(asia$variable),multiple = TRUE,selectize = TRUE,selected = "Mundo")
+```
+
+:::: {style="display: flex;"}
+
+::: {}
+```{r echo=FALSE}
+dateRangeInput('dr',label = 'Date Range',start = first(asia$date),end = last(asia$date))
+```
+:::
+
+
+::: {}
+```{r echo=FALSE}
+selectInput("field", label = "Field", choices = unique(asia$nice_field), selected = "Price TR")
+```
+:::
+::: {}
+```{r echo=FALSE}
+selectInput("appOptions",label = 'Options',choices = appOptions,multiple = TRUE,selectize = TRUE)
+```
+:::
+
+::::
+
+
+```{r echo=FALSE}
+# dateRangeInput('dr',label = 'Date Range',start = first(asia$date),end = last(asia$date))
+```
+
+
+```{r echo=FALSE}
+# selectInput("selection",label = "Select Series",choices = unique(asia$variable),multiple = TRUE,selectize = TRUE,selected = "Mundo")
+```
+
+```{r echo=FALSE}
+# selectInput("field", label = "Field", choices = unique(asia$nice_field), selected = "Price TR")
+```
+
+
+```{r echo=FALSE}
+# selectInput("appOptions",label = 'Options',choices = appOptions,multiple = TRUE,selectize = TRUE)
+```
+
+
+```{r, echo=FALSE}
+
+mydata <- reactive({
+ x <- asia %>% filter(nice_field == input$field) %>% select(date,variable,value) %>%
+    filter(date >= input$dr[1],date <=input$dr[2], variable %in% input$selection) %>%
+    arrange(variable,date) %>% group_by(variable)
+ if("rebase" %in% input$appOptions){
+   x <- x %>%
+    mutate(value = value / first(value) - 1)
+ } 
+ x
+})
+
+renderPlotly({
+  plt <- ggplot(mydata(),aes(x=date,y=value, color = variable)) + 
+    geom_line()+
+    theme_minimal()
+  
+  if("facets" %in% input$appOptions){
+    plt <- plt + facet_wrap(~variable) + theme(legend.position = 'none')
+  }
+  
+  if("rebase" %in% input$appOptions){
+    plt <- plt + scale_y_continuous(labels = scales::percent)
+  }
+  ggplotly(plt)
+           })
+```
+
