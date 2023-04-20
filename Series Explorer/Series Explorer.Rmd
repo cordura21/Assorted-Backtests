@@ -13,14 +13,14 @@ library(ggplot2)
 
 library(plotly)
 
-asia <- readRDS('Main.RDS')
-appOptions <- c('rebase','facets','percentage','stats')
+asia <- readRDS('CurvasPort.RDS')
+appOptions <- c('rebase','facets','percentage','stats','free_y')
 
 
 ```
 
 ```{r echo=FALSE}
-selectInput("selection",label = "Select Series",choices = unique(asia$variable),multiple = TRUE,selectize = TRUE,selected = "Mundo")
+selectInput("selection",label = "Select Series",choices = unique(asia$variable),multiple = TRUE,selectize = TRUE)
 ```
 
 :::: {style="display: flex;"}
@@ -34,7 +34,7 @@ dateRangeInput('dr',label = 'Date Range',start = first(asia$date),end = last(asi
 
 ::: {}
 ```{r echo=FALSE}
-selectInput("field", label = "Field", choices = unique(asia$nice_field), selected = "Price TR")
+selectInput("field", label = "Field", choices = unique(asia$field), selected = "Price TR")
 ```
 :::
 ::: {}
@@ -68,7 +68,7 @@ selectInput("appOptions",label = 'Options',choices = appOptions,multiple = TRUE,
 ```{r, echo=FALSE}
 
 mydata <- reactive({
- x <- asia %>% filter(nice_field == input$field) %>% select(date,variable,value) %>%
+ x <- asia %>% filter(field == input$field) %>% select(date,variable,value) %>%
     filter(date >= input$dr[1],date <=input$dr[2], variable %in% input$selection) %>%
     arrange(variable,date) %>% group_by(variable)
  if("rebase" %in% input$appOptions){
@@ -84,7 +84,8 @@ renderPlotly({
     theme_minimal()
   
   if("facets" %in% input$appOptions){
-    plt <- plt + facet_wrap(~variable) + theme(legend.position = 'none')
+    plt <- plt + facet_wrap(~variable,scales = ifelse("free_y" %in% input$appOptions,"free_y","fixed")) + 
+      theme(legend.position = 'none')
   }
   
   if("rebase" %in% input$appOptions){
